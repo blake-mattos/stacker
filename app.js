@@ -138,7 +138,29 @@ var getUnanswered = function(tags) {
 	};
 
 
+/* notes from justin:
 
+function x(test){
+ var x = "";
+ x += "one";
+ x += test;
+ x += "three";
+
+ return x;
+}
+
+or
+
+var x = function (test){
+ var x = "";
+ x += "one";
+ x += test;
+ x += "three";
+
+ return x;
+}
+
+*/
 
 
 
