@@ -12,7 +12,7 @@ $(document).ready( function() {
 		$('.results').html('');
 		var answerers = $(this).find("input[name='answerers']").val();
 		//call the inspiration function here...
-		getInpiration(answerers);
+		getInspiration(answerers);
 	});
 });
 
@@ -54,6 +54,8 @@ var showAnswerers = function(answerer) {
 
 //clone template
 	var result = $('.templates .answerer').clone();
+
+//add functionality here...
 
 	return result;
 };
@@ -104,11 +106,35 @@ var getUnanswered = function(tags) {
 		$('.search-results').append(errorElem);
 	});
 };
+	
+var getInspiration = function(answerers) {
 
+var request = {tag: answerers,
+site: 'stackoverflow',
+period: 'all_time'};
 
-var getInpiration = function(answerers) {
+var result = $.ajax({
+	url: 'http://api.stackexchange.com/2.2/tags/' +request.tag '/top-answerers' +request.period,
+	data: request,
+	dataType: "jsonp",
+	type: "GET",
+})
 
-alert(answerers);
+.done(function(result){
+console.log(result);
+
+	$('.search-results').html("here are your results");
+	
+		$.each(result.items, function(i, item){
+			var topUsers = showUser(item);
+			$('.results').append(topUsers);
+		});
+})
+
+	.fail(function(jqXHR, error, errorThrown){
+		var errorElem = showError(error);
+		$('.search-results').append(errorElem);
+	});
 
 };
 
