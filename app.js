@@ -133,7 +133,7 @@ var getUnanswered = function(tags) {
 		});
 
 //wrap in html
-		var showUser = $(html.{"<p>" +item.display_name+ "</p>"});
+		var showUser = $.html("<p>" +item.display_name+ "</p>");
 	
 	};
 
