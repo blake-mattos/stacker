@@ -131,7 +131,12 @@ var getUnanswered = function(tags) {
 			var errorElem = showError(error);
 			$('.search-results').append(errorElem);
 		});
+
+//wrap in html
+		var showUser = ("<p>" item.display_name "</p>");
+	
 	};
+
 
 
 
