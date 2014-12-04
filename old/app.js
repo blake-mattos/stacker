@@ -1,6 +1,4 @@
 $(document).ready( function() {
-
-//------ Section: A ------
 	$('.unanswered-getter').submit( function(event){
 		// zero out results if previous search has run
 		$('.results').html('');
@@ -8,18 +6,16 @@ $(document).ready( function() {
 		var tags = $(this).find("input[name='tags']").val();
 		getUnanswered(tags);
 	});
+
 	$('.inspiration-getter').submit( function(event){
-		// zero out results if previous search has run
+		//remove any old results
 		$('.results').html('');
-		// get the value of the tags the user submitted
 		var answerers = $(this).find("input[name='answerers']").val();
+		//call the inspiration function here...
 		getInspiration(answerers);
 	});
 });
 
-
-
-//------ Section: B ------
 // this function takes the question object returned by StackOverflow 
 // and creates new result to be appended to DOM
 var showQuestion = function(question) {
@@ -53,43 +49,18 @@ var showQuestion = function(question) {
 	return result;
 };
 
-//showUsers
-// this function takes the Users object returned by StackOverflow 
-// and creates new result to be appended to DOM
-var showUsers = function(answerers) {
-	console.log(answerers)
 
-	// clone our result template code
-	var result = $('.templates .user').clone();
-	
-	// set username
-	var username = result.find('.username a');
-	username.attr('href', answerers.display_name);
-	username.text(answerers.title);
+var showAnswerers = function(answerer) {
 
+//clone template
+var result = $('.templates .answerer').clone();
 
-	// set reputation
-	var reputation = result.find('.reputation');
+//add functionality here...
 
-
-	// // set the #views for question property in result
-	// var viewed = result.find('.viewed');
-	// viewed.text(question.view_count);
-
-	// // set some properties related to asker
-	// var asker = result.find('.asker');
-	// asker.html('<p>Name: <a target="_blank" href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +
-	// 	question.owner.display_name +
-	// 	'</a>' +
-	// 	'</p>' +
-	// 	'<p>Reputation: ' + question.owner.reputation + '</p>'
-	// 	);
-$("#stuff").text(answerers);
-	return result;
+return result;
 };
 
 
-//------ Section: C ------
 // this function takes the results object from StackOverflow
 // and creates info about search results to be appended to DOM
 var showSearchResults = function(query, resultNum) {
@@ -104,9 +75,6 @@ var showError = function(error){
 	errorElem.append(errorText);
 };
 
-
-
-//------ Section: D ------
 // takes a string of semi-colon separated tags to be searched
 // for on StackOverflow
 var getUnanswered = function(tags) {
@@ -138,31 +106,24 @@ var getUnanswered = function(tags) {
 			$('.search-results').append(errorElem);
 		});
 	};
+	
+	var getInspiration = function(answerers) {
 
-//	getInspiration here
-var getInspiration = function(answerers) {
+		var request = {
+			site: 'stackoverflow',
+		};
 
-//check that function is called	
-	console.log('getInspiration:' +answerers );
-
-		// the parameters we need to pass in our request to StackOverflow's API
-		var request = {	site: 'stackoverflow'};
-
-		// URL: https://api.stackexchange.com/2.2/tags/jquery/top-answerers/all_time?site=stackoverflow
 		var result = $.ajax({
-			url: "http://api.stackexchange.com/2.2/tags/" +answerers+ "/top-answerers/all_time",
+			url: 'http://api.stackexchange.com/2.2/tags/' +answerers+ '/top-answerers/all_time',
 			data: request,
 			dataType: "jsonp",
 			type: "GET",
 		})
-
 		.done(function(result){
-			var searchResults = showSearchResults(request.tagged, result.items.length);
-
-			$('.search-results').html(searchResults);
-
-			$.each(result.items, function(i, item) {
-				var topUsers = showUsers(item);
+			console.log(result);
+			$('.search-results').html("here are your results");
+			$.each(result.items, function(i, item){
+				var topUsers = showUser(item);
 				$('.results').append(topUsers);
 			});
 		})
@@ -171,7 +132,35 @@ var getInspiration = function(answerers) {
 			$('.search-results').append(errorElem);
 		});
 
+//wrap in html
+		var showUser = $.html("<p>" +item.display_name+ "</p>");
+	
+	};
 
-};
+
+/* notes from justin:
+
+function x(test){
+ var x = "";
+ x += "one";
+ x += test;
+ x += "three";
+
+ return x;
+}
+
+or
+
+var x = function (test){
+ var x = "";
+ x += "one";
+ x += test;
+ x += "three";
+
+ return x;
+}
+
+*/
+
 
 

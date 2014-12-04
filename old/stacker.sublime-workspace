@@ -4,156 +4,44 @@
 		"selected_items":
 		[
 			[
-				"displ",
-				"display_name"
+				"toggle",
+				"slideToggle"
 			],
 			[
-				"appe",
-				"append"
+				"di",
+				"display"
 			],
 			[
-				"get",
-				"getInspiration"
+				"paddi",
+				"padding"
 			],
 			[
-				"font-",
-				"font-size"
+				"m",
+				"margin-bottom"
 			],
 			[
-				"bgc",
-				"background-color"
+				"padd",
+				"padding-left"
+			],
+			[
+				"trans",
+				"transparent"
 			],
 			[
 				"mar",
 				"margin"
 			],
 			[
-				"add",
-				"addClass"
-			],
-			[
-				"slide",
-				"slidein"
-			],
-			[
-				"po",
-				"portfolioNav"
-			],
-			[
-				"home",
-				"homeNav"
-			],
-			[
-				"port",
-				"portfolioNav"
-			],
-			[
-				"clic",
-				"click"
-			],
-			[
-				"min",
-				"min-height"
-			],
-			[
-				"bs",
-				"background-size"
-			],
-			[
-				"bac",
-				"background-repeat"
-			],
-			[
-				"bi",
-				"background-image"
-			],
-			[
-				"padd",
-				"padding"
-			],
-			[
-				"padding",
-				"padding-top"
-			],
-			[
-				"j",
-				"javascript"
-			],
-			[
-				"inli",
-				"inline-block"
-			],
-			[
-				"i",
-				"inline"
-			],
-			[
-				"b",
-				"block"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
-				"pad",
-				"padding"
-			],
-			[
-				"ov",
-				"overflow"
-			],
-			[
-				"ba",
-				"background-size"
-			],
-			[
-				"c",
-				"center"
-			],
-			[
-				"no",
-				"no-repeat"
-			],
-			[
-				"margin",
-				"margin-bottom"
-			],
-			[
-				"border",
-				"border-bottom"
-			],
-			[
 				"pa",
 				"padding"
-			],
-			[
-				"marg",
-				"margin-top"
-			],
-			[
-				"max",
-				"max-height"
-			],
-			[
-				"z",
-				"z-index"
-			],
-			[
-				"h",
-				"height"
-			],
-			[
-				"bgci",
-				"background-image"
 			],
 			[
 				"op",
 				"opacity"
 			],
 			[
-				"font",
-				"font-size"
+				"min",
+				"min-height"
 			],
 			[
 				"check",
@@ -168,8 +56,32 @@
 				"position"
 			],
 			[
+				"b",
+				"text-bottom"
+			],
+			[
+				"c",
+				"color"
+			],
+			[
+				"bgc",
+				"border-image-slice"
+			],
+			[
 				"in",
 				"inline-block"
+			],
+			[
+				"padding",
+				"padding-left"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"slide",
+				"slideUp"
 			],
 			[
 				"l",
@@ -186,6 +98,10 @@
 			[
 				"sele",
 				"selected"
+			],
+			[
+				"border",
+				"border"
 			],
 			[
 				"ent",
@@ -216,12 +132,20 @@
 				"selectEntity"
 			],
 			[
+				"margin",
+				"margin"
+			],
+			[
 				"cl",
 				"clear"
 			],
 			[
 				"d",
 				"display"
+			],
+			[
+				"h",
+				"href	Attr"
 			],
 			[
 				"blo",
@@ -264,6 +188,10 @@
 				"ice-cold"
 			],
 			[
+				"marg",
+				"margin"
+			],
+			[
 				"sec",
 				"secretNumber"
 			],
@@ -288,10 +216,13 @@
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"contents": "$(document).ready( function() {\n	$('.unanswered-getter').submit( function(event){\n		// zero out results if previous search has run\n		$('.results').html('');\n		// get the value of the tags the user submitted\n		var tags = $(this).find(\"input[name='tags']\").val();\n		getUnanswered(tags);\n	});\n\n	$('.inspiration-getter').submit( function(event){\n		//remove any old results\n		$('.results').html('');\n		var answerers = $(this).find(\"input[name='answerers']\").val();\n		//call the inspiration function here...\n		getInspiration(answerers);\n	});\n});\n\n// this function takes the question object returned by StackOverflow \n// and creates new result to be appended to DOM\nvar showQuestion = function(question) {\n	\n	// clone our result template code\n	var result = $('.templates .question').clone();\n	\n	// Set the question properties in result\n	var questionElem = result.find('.question-text a');\n	questionElem.attr('href', question.link);\n	questionElem.text(question.title);\n\n	// set the date asked property in result\n	var asked = result.find('.asked-date');\n	var date = new Date(1000*question.creation_date);\n	asked.text(date.toString());\n\n	// set the #views for question property in result\n	var viewed = result.find('.viewed');\n	viewed.text(question.view_count);\n\n	// set some properties related to asker\n	var asker = result.find('.asker');\n	asker.html('<p>Name: <a target=\"_blank\" href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +\n		question.owner.display_name +\n		'</a>' +\n		'</p>' +\n		'<p>Reputation: ' + question.owner.reputation + '</p>'\n		);\n\n	return result;\n};\n\n\nvar showAnswerers = function(answerer) {\n\n//clone template\nvar result = $('.templates .answerer').clone();\n\n//add functionality here...\n1\nreturn result;\n};\n\n\n// this function takes the results object from StackOverflow\n// and creates info about search results to be appended to DOM\nvar showSearchResults = function(query, resultNum) {\n	var results = resultNum + ' results for <strong>' + query;\n	return results;\n};\n\n// takes error string and turns it into displayable DOM element\nvar showError = function(error){\n	var errorElem = $('.templates .error').clone();\n	var errorText = '<p>' + error + '</p>';\n	errorElem.append(errorText);\n};\n\n// takes a string of semi-colon separated tags to be searched\n// for on StackOverflow\nvar getUnanswered = function(tags) {\n	\n	// the parameters we need to pass in our request to StackOverflow's API\n	var request = {tagged: tags,\n		site: 'stackoverflow',\n		order: 'desc',\n		sort: 'creation'};\n\n		var result = $.ajax({\n			url: \"http://api.stackexchange.com/2.2/questions/unanswered\",\n			data: request,\n			dataType: \"jsonp\",\n			type: \"GET\",\n		})\n		.done(function(result){\n			var searchResults = showSearchResults(request.tagged, result.items.length);\n\n			$('.search-results').html(searchResults);\n\n			$.each(result.items, function(i, item) {\n				var question = showQuestion(item);\n				$('.results').append(question);\n			});\n		})\n		.fail(function(jqXHR, error, errorThrown){\n			var errorElem = showError(error);\n			$('.search-results').append(errorElem);\n		});\n	};\n	\n	var getInspiration = function(answerers) {\n\n		var request = {\n			site: 'stackoverflow',\n		};\n\n		var result = $.ajax({\n			url: 'http://api.stackexchange.com/2.2/tags/' +answerers+ '/top-answerers/all_time',\n			data: request,\n			dataType: \"jsonp\",\n			type: \"GET\",\n		})\n		.done(function(result){\n			console.log(result);\n			$('.search-results').html(\"here are your results\");\n			$.each(result.items, function(i, item){\n				var topUsers = showUser(item);\n				$('.results').append(topUsers);\n			});\n		})\n		.fail(function(jqXHR, error, errorThrown){\n			var errorElem = showError(error);\n			$('.search-results').append(errorElem);\n		});\n\n//wrap in html\n		var showUser = $.html(\"<p>\" +item.display_name+ \"</p>\");\n	};\n\n\n/* notes from justin:\n\nfunction x(test){\n var x = \"\";\n x += \"one\";\n x += test;\n x += \"three\";\n\n return x;\n}\n\nor\n\nvar x = function (test){\n var x = \"\";\n x += \"one\";\n x += test;\n x += \"three\";\n\n return x;\n}\n\n*/\n\n\n\n",
+			"file": "app.js",
+			"file_size": 4003,
+			"file_write_time": 130591661680000000,
 			"settings":
 			{
-				"buffer_size": 2323,
+				"buffer_size": 4002,
 				"line_ending": "Unix"
 			}
 		},
@@ -299,7 +230,7 @@
 			"file": "main.css",
 			"settings":
 			{
-				"buffer_size": 612,
+				"buffer_size": 650,
 				"line_ending": "Unix"
 			}
 		}
@@ -307,15 +238,11 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 47.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
 				"install ",
-				"Package Control: Install Package"
-			],
-			[
-				"ins",
 				"Package Control: Install Package"
 			]
 		],
@@ -340,14 +267,8 @@
 	},
 	"file_history":
 	[
-		"/Users/bmattos/Documents/Thinkful/stackerAJAX-master/app.js",
-		"/Users/bmattos/Documents/Thinkful/stackerAJAX-master/index.html",
-		"/Users/bmattos/Library/Application Support/Sublime Text 3/Packages/User/LESS.sublime-settings",
-		"/Users/bmattos/Personal/Portfolio/portfolio/css/style.css",
-		"/Users/bmattos/Personal/Portfolio/portfolio/js/script.js",
-		"/Users/bmattos/Personal/Portfolio/portfolio/indexOLD.html",
-		"/Users/bmattos/Personal/Portfolio/portfolio/index.html",
-		"/Users/bmattos/Downloads/progressbar.js-master/dist/index.html",
+		"/Users/bmattos/Documents/Thinkful/stacker/index.html",
+		"/Users/bmattos/Desktop/InCorp-Blake-Local/Projects/Wizard/Collateral/Messaging",
 		"/Users/bmattos/Documents/RL-Design/WizardPrototype-v1.1/css/normalize.css",
 		"/Users/bmattos/Documents/RL-Design/ComplianceMap/js/jquery.usmap.js",
 		"/Users/bmattos/Desktop/InCorp-Blake-Local/Projects/Typeahead/TypeAhead-States/css/style.css",
@@ -376,7 +297,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 25.0
 	},
 	"find_in_files":
 	{
@@ -390,62 +311,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"showSearchResults",
-			"users",
-			"question",
-			"port",
-			"id=\"home\"",
-			"#home",
-			"home",
-			"portfolio",
-			"waypoi",
-			"home",
-			"slide1",
-			"home",
-			"about",
-			"now",
-			"button",
-			"ready",
-			"portfolio",
-			"first",
-			"click",
-			"currnet",
-			"width",
-			"progresswra",
-			"slide",
+			"check",
+			"large-6",
+			"large-3",
+			"recomend",
+			"recommendation",
+			"recomend",
+			"<a",
+			"● ",
+			"view",
+			"check",
 			">\n",
-			"about",
-			".svg",
-			"svg",
-			"smLogo",
-			"smlogo",
-			"toggle",
-			"sm",
-			"small",
-			"logo",
-			"wtf",
-			"logo",
-			"wrap",
-			"nav",
-			"current_",
-			"current",
-			"	position: absolute;\n	top: 600px;\n	left: 500px;\n	background-color: rgba(0,0,0,0.1);\n}\n",
-			"pad",
-			"sticky",
-			".nav",
-			"stick",
-			"nav",
-			"sticky",
-			"data-equalizer-watch",
-			"block",
-			"small-6",
-			"deskLine2",
-			"nav-wrap",
-			"%;\n",
-			"example-one",
-			"<!--\n -->",
-			";\n",
-			"text",
+			"selection",
+			"outer",
+			"border",
+			"900",
+			"check",
 			"span",
 			"outer",
 			"type",
@@ -500,7 +381,9 @@
 		"regex": false,
 		"replace_history":
 		[
-			"nav",
+			"medium-6",
+			"medium-3",
+			"recommend",
 			"option1",
 			"",
 			"dbdbdb",
@@ -520,38 +403,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2323,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1757,
-								1757
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 645.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		},
 		{
@@ -559,20 +412,49 @@
 			"sheets":
 			[
 				{
-					"buffer": 1,
-					"file": "main.css",
+					"buffer": 0,
+					"file": "app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 612,
+						"buffer_size": 4002,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								378,
-								378
+								3783,
+								3783
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 1.0,
+						"translation.y": 4.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "main.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								36,
+								36
 							]
 						],
 						"settings":
@@ -583,7 +465,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -617,7 +499,7 @@
 		"cols":
 		[
 			0.0,
-			0.333110215928,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -661,7 +543,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
