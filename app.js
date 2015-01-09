@@ -64,12 +64,16 @@ var showUsers = function(answerers) {
 	
 	// set username
 	var username = result.find('.username a');
-	username.attr('href', answerers.display_name);
-	username.text(answerers.title);
+	console.log(answerers.user.link);
+	console.log(username.attr('href'));	
+	username.attr('href', answerers.user.link);
+	username.text(answerers.user.display_name);
+	console.log(username.attr('href'));
 
 
 	// set reputation
 	var reputation = result.find('.reputation');
+	reputation.text(answerers.user.reputation);
 
 
 	// // set the #views for question property in result
@@ -84,6 +88,9 @@ var showUsers = function(answerers) {
 	// 	'</p>' +
 	// 	'<p>Reputation: ' + question.owner.reputation + '</p>'
 	// 	);
+
+console.log(result);
+
 $("#stuff").text(answerers);
 	return result;
 };

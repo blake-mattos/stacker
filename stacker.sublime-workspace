@@ -302,6 +302,14 @@
 				"buffer_size": 612,
 				"line_ending": "Unix"
 			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 5011,
+				"line_ending": "Unix"
+			}
 		}
 	],
 	"build_system": "",
@@ -546,16 +554,16 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 645.0,
+						"translation.y": 405.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -581,6 +589,35 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5011,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1852,
+								1854
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 619.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -617,7 +654,7 @@
 		"cols":
 		[
 			0.0,
-			0.333110215928,
+			0.5,
 			1.0
 		],
 		"rows":
